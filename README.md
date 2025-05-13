@@ -41,6 +41,17 @@ This section explores the dataset to uncover patterns, trends, and potential rel
    - Applied **cyclical encoding** to 'day_of_week' using sine and cosine transformations to help the models understand the proximity between the days (e.g., Monday is closer to Tuesday than to Friday).
 - **Column cleanup**: The holiday indicators were standardized by renaming them to 'is_public_holiday' and 'is_school_holiday'.
 
+**Figure 1** shows traffic volume by hour of the day. Traffic rises sharply from 5 AM, peaking between 7–9 AM during the morning commute, and again between 3–6 PM in the evening rush hour. Volumes are lowest between 12–4 AM, with steady declines after 6 PM. Wider boxes during peak hours indicate greater variability in traffic during commuting times.
+
+
+**Figure 2** illustrates daily traffic volume from January 2012 to January 2025. While overall patterns remain stable, several key fluctuations stand out:
+- 2014–2015: Data is missing from January to June in both years. Interpolation was used for continuity, but trends during these gaps may be less reliable.
+- Late 2014: Noticeable drops in November–December 2014 reflect disruptions from events such as the Sydney Lindt Cafe hostage crises on December 15.
+- 2020–2021: Sharp declines align with COVID-19 lockdowns, which significantly reduced traffic.
+- Post-2023: A gradual decline may reflect people moving away from Sydney due to rising living costs and housing affordability pressures.
+
+
+
 
 
 
