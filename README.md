@@ -41,8 +41,15 @@ This section explores the dataset to uncover patterns, trends, and potential rel
    - Applied cyclical encoding to 'day_of_week' using sine and cosine transformations to help the models understand the proximity between the days (e.g., Monday is closer to Tuesday than to Friday).
 - **Column cleanup**: The holiday indicators were standardized by renaming them to 'is_public_holiday' and 'is_school_holiday'.
 
+<p align="center">
+  <img src="Plots/hourly_traffic.png" width="900"/>
+</p>
+
 **Figure 1** shows traffic volume by hour of the day. Traffic rises sharply from 5 AM, peaking between 7–9 AM during the morning commute, and again between 3–6 PM in the evening rush hour. Volumes are lowest between 12–4 AM, with steady declines after 6 PM. Wider boxes during peak hours indicate greater variability in traffic during commuting times.
 
+<p align="center">
+  <img src="Plots/daily_traffic.png" width="900"/>
+</p>
 
 **Figure 2** illustrates daily traffic volume from January 2012 to January 2025. While overall patterns remain stable, several key fluctuations stand out:
 - 2014–2015: Data is missing from January to June in both years. Interpolation was used for continuity, but trends during these gaps may be less reliable.
@@ -50,11 +57,27 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 - 2020–2021: Sharp declines align with COVID-19 lockdowns, which significantly reduced traffic.
 - Post 2023: A gradual decline may reflect people moving away from Sydney due to rising living costs and housing affordability pressures.
 
+<p align="center">
+  <img src="Plots/monthly_traffic.png" width="600"/>
+</p>
+
 **Figure 3** displays the average monthly traffic volume. Traffic tends to peak in February, March, May, and November, while January, July, and December show the lowest volumes. These dips likely correspond to school holidays, summer vacations, and seasonal factors such as winter weather.
+
+<p align="center">
+  <img src="Plots/week_traffic.png" width="600"/>
+</p>
 
 **Figure 4** shows the average traffic volume by day of the week. Traffic increases steadily from Monday to Friday, peaking on Friday, likely due to early weekend getaways as people head out for long weekends. Saturday maintains high volumes, likely driven by recreational activities and shopping, while Sunday sees the lowest traffic, as people tend to stay home and relax
 
+<p align="center">
+  <img src="Plots/holiday_traffic.png" width="600"/>
+</p>
+
 **Figure 5** compares the average traffic volume on public holidays (1) versus non-holidays (0). The chart shows that traffic volume is significantly lower on public holidays. This pattern highlights the importance of including holiday indicators as features in forecasting models.
+
+<p align="center">
+  <img src="Plots/weather_traffic.png" width="600"/>
+</p>
 
 **Figure 6** displays scatter plots exploring how weather conditions may influence traffic volume:
 - **Traffic vs Rain**: Most datapoints cluster below 20 mm of rain, heavier rain may reduce traffic.
@@ -65,6 +88,8 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 ## Residual Analysis
 To better understand the traffic variability, time series decomposition was applied to analyse the residuals (unexplained variation). The residual plot shows large deviations from the baseline (zero line), confirming spikes and drops in traffic volume. These deviations suggest unusual events such as road closures, crashes, parades, or public disruptions, factors not captured by trend or seasonality.
 This insight justified creating a new binary feature **(is_unusual)** to flag such anomalous days and improve model performance on unpredictable patterns.
+
+<p align="center"> <img width="700" alt="image" src="https://github.com/user-attachments/assets/65fdbcf0-1f3a-43e8-bf58-4efba07d5c03" /> </p>
 
 ## Models and Methods
 To forecast daily traffic volume on Sydney's New South Head Road (westbound), this study implemented and evaluated three machine learning models:
@@ -83,11 +108,19 @@ This approach allows the model to be built and refined using the training set, f
 ### Model 1: Random Forest Regressor
 The **random forest regressor model** is a robust ensemble machine learning algorithm designed for regression tasks, especially when dealing with complex, non-linear data. It works by combining the predictions of multiple decision trees, each trained on random subsets of the dataset (a technique known as bootstrapping). The final prediction is calculated as the average of the outputs from all trees, making it less prone to overfitting compared to individual trees. In this project, this model was trained on all input features without hyperparameter tuning.
 
+<p align="center">
+  <img src="Plots/random_forest_prediction.png" width="900"/>
+</p>
+
 **Figure 7** shows the predicted vs. actual daily traffic volume using the Random Forest model. The model captures overall traffic patterns well, especially seasonal trends. However, it struggles to accurately predict sharp drops caused by missing data or irregular events like road closures or public disruptions. Despite these challenges, the model performs reasonably well in tracking general traffic flow.
+
+<p align="center">
+  <img src="Plots/rf_feature_important.png" width="600"/>
+</p>
 
 **Figure 8** shows feature importance from the Random Forest model. The top predictor is `rolling_mean_7`, the 7-day moving average of daily traffic volume. This feature smooths out daily fluctuations and helps the model predict traffic based on recent trends. Other key features include `is_unusual`, `day_of_week`, and lag values like `lag_1` (traffic volume from the previous day) and `lag_7` (traffic volume from the same day last week). These features capture recurring traffic patterns and weekly seasonality, while `day_of_week` distinguishes between weekdays and weekends as traffic varies between a Tuesday and a Sunday. Weather features had little impact, suggesting traffic on this road is more influenced by time-based and event-driven patterns. This is expected in Sydney, where daily commuting tends to continue regardless of weather changes.
 
-### Model 2: XGBoost (with Hyperparameter Tuning)
+### 🥇Model 2: XGBoost (with Hyperparameter Tuning)
 **XGBoost** short for eXtreme Gradient Boosting, is a gradient boosting framework that uses decision trees as its base learners combining them sequentially to improve the model’s performance. Each new tree is trained to correct the errors made by the previous tree (a process called boosting). It has built-in parallel processing to train models on large datasets quickly.
 
 Hyperparameter tuning is the process of optimizing the performance of machine learning models by evaluating a range of predefined values for key parameters. For this project, I applied hyperparameter tuning to XGBoost using **RandomizedSearchCV**:
