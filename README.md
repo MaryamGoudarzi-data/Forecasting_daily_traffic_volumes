@@ -1,4 +1,4 @@
-<img width="638" alt="image" src="https://github.com/user-attachments/assets/63714bf0-cba1-4d7e-b54c-3f51d0ee35e9" /><h1 align="center"> 🚦Forecasting Traffic Volume🚦 </h1>
+<h1 align="center"> 🚦Forecasting Traffic Volume🚦 </h1>
 
 This project forecasts daily traffic volumes for New South Head Road in Sydney, using historical traffic data from January 2012 to January 2025. The goal is to model and predict traffic flow using machine learning while accounting for holidays, weather, and irregular events like road closures or festivals.
 
@@ -38,7 +38,7 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 - **Row filtering**: Dropped any rows where total daily volume was still missing.
 - **Feature engineering**:
    - Extracted day_of_week and month from the date.
-   - Applied **cyclical encoding** to 'day_of_week' using sine and cosine transformations to help the models understand the proximity between the days (e.g., Monday is closer to Tuesday than to Friday).
+   - Applied cyclical encoding to 'day_of_week' using sine and cosine transformations to help the models understand the proximity between the days (e.g., Monday is closer to Tuesday than to Friday).
 - **Column cleanup**: The holiday indicators were standardized by renaming them to 'is_public_holiday' and 'is_school_holiday'.
 
 **Figure 1** shows traffic volume by hour of the day. Traffic rises sharply from 5 AM, peaking between 7–9 AM during the morning commute, and again between 3–6 PM in the evening rush hour. Volumes are lowest between 12–4 AM, with steady declines after 6 PM. Wider boxes during peak hours indicate greater variability in traffic during commuting times.
@@ -48,9 +48,9 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 - 2014–2015: Data is missing from January to June in both years. Interpolation was used for continuity, but trends during these gaps may be less reliable.
 - Late 2014: Noticeable drops in November–December 2014 reflect disruptions from events such as the Sydney Lindt Cafe hostage crises on December 15.
 - 2020–2021: Sharp declines align with COVID-19 lockdowns, which significantly reduced traffic.
-- Post-2023: A gradual decline may reflect people moving away from Sydney due to rising living costs and housing affordability pressures.
+- Post 2023: A gradual decline may reflect people moving away from Sydney due to rising living costs and housing affordability pressures.
 
-**Figure 3** displays the average monthly traffic volume. Traffic tends to peak in February, March, May, and November, while January, July, and December show the lowest volumes. These dips likely correspond to school holidays, summer vacations, and seasonal factors such as winter weather or major public holidays.
+**Figure 3** displays the average monthly traffic volume. Traffic tends to peak in February, March, May, and November, while January, July, and December show the lowest volumes. These dips likely correspond to school holidays, summer vacations, and seasonal factors such as winter weather.
 
 **Figure 4** shows the average traffic volume by day of the week. Traffic increases steadily from Monday to Friday, peaking on Friday, likely due to early weekend getaways as people head out for long weekends. Saturday maintains high volumes, likely driven by recreational activities and shopping, while Sunday sees the lowest traffic, as people tend to stay home and relax
 
@@ -90,7 +90,12 @@ The **random forest regressor model** is a robust ensemble machine learning algo
 ### Model 2: XGBoost (with Hyperparameter Tuning)
 **XGBoost** short for eXtreme Gradient Boosting, is a gradient boosting framework that uses decision trees as its base learners combining them sequentially to improve the model’s performance. Each new tree is trained to correct the errors made by the previous tree (a process called boosting). It has built-in parallel processing to train models on large datasets quickly.
 
-Hyperparameter tuning is the process of optimizing the performance of machine learning models by evaluating a range of predefined values for key parameters. For this project, I applied hyperparameter tuning to XGBoost using RandomizedSearchCV. The **n_estimators** parameter, which controls the number of trees in the model, was tested with values ranging from 100 to 500. The **max_depth** parameter, determines how deep each tree can grow, tested from 3 to 10, the deeper the tree, the more complex the model.  The learning_rate parameter controls the speed at which the model learns, tested with small values between 0.01 and 0.2 to balance learning speed and accuracy. The subsample parameter controls the fraction of observations for each tree, with values between 0.6 and 1.0 to prevent overfitting.The **colsample_bytree** specifies the fraction of features used in each tree, varied between 0.6 and 1.0 to increase model diversity.
+Hyperparameter tuning is the process of optimizing the performance of machine learning models by evaluating a range of predefined values for key parameters. For this project, I applied hyperparameter tuning to XGBoost using **RandomizedSearchCV**:
+- The **n_estimators** parameter, which controls the number of trees in the model, was tested with values ranging from 100 to 500.
+- The **max_depth** parameter, determines how deep each tree can grow, tested from 3 to 10, the deeper the tree, the more complex the model.
+- The **learning_rate** parameter controls the speed at which the model learns, tested with small values between 0.01 and 0.2 to balance learning speed and accuracy.
+- The **subsample parameter** controls the fraction of observations for each tree, with values between 0.6 and 1.0 to prevent overfitting.
+- The **colsample_bytree** specifies the fraction of features used in each tree, varied between 0.6 and 1.0 to increase model diversity.
 
 After evaluating 20 combinations, the best performing set of parameters was used to train the final XGBoost model.
 
