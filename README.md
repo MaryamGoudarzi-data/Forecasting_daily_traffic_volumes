@@ -50,8 +50,11 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 - 2020–2021: Sharp declines align with COVID-19 lockdowns, which significantly reduced traffic.
 - Post-2023: A gradual decline may reflect people moving away from Sydney due to rising living costs and housing affordability pressures.
 
+**Figure 3** displays the average monthly traffic volume. Traffic tends to peak in February, March, May, and November, while January, July, and December show the lowest volumes. These dips likely correspond to school holidays, summer vacations, and seasonal factors such as winter weather or major public holidays.
 
+**Figure 4** shows the average traffic volume by day of the week. Traffic increases steadily from Monday to Friday, peaking on Friday, likely due to early weekend getaways as people head out for long weekends. Saturday maintains high volumes, likely driven by recreational activities and shopping, while Sunday sees the lowest traffic, as people tend to stay home and relax
 
+**Figure 5** compares the average traffic volume on public holidays (1) versus non-holidays (0). The chart shows that traffic volume is significantly lower on public holidays. This pattern highlights the importance of including holiday indicators as features in forecasting models.
 
 
 
