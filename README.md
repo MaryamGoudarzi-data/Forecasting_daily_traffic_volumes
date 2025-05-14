@@ -94,13 +94,11 @@ After evaluating 20 combinations, the best performing set of parameters was used
 
 
 | Model              | MAE       | RMSE      | Relative MAE (%)|
-|-------------------|-----------|-----------|-----------------|
+|-------------------|:-----------:|:-----------:|:-----------------:|
 | Random Forest      | 1945.854  | 3926.882  |  5.787  |
 | XGBoost (Tuned)    | 1901.334  | 3813.914  |  5.655  |
 | LightGBM           | 1960.274  | 3978.401  |  5.787  |
-
-
-
+> **Table 1:** Evaluation metrics  
 
 
 
