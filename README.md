@@ -56,7 +56,8 @@ This section explores the dataset to uncover patterns, trends, and potential rel
 
 **Figure 5** compares the average traffic volume on public holidays (1) versus non-holidays (0). The chart shows that traffic volume is significantly lower on public holidays. This pattern highlights the importance of including holiday indicators as features in forecasting models.
 
-
-
-  
-
+**Figure 6** displays scatter plots exploring how weather conditions may influence traffic volume:
+- **Traffic vs Rain**: Most datapoints cluster below 20 mm of rain, heavier rain may reduce traffic.
+- **Traffic vs Temperature**: Traffic remains stable across temperature ranges, showing minimal impact.
+- **Traffic vs Cloud Cover**: Even distribution suggests cloudiness has little effect on traffic.
+- **Traffic vs Wind**: The scatter is dense and consistent across the wind range, suggesting minimal impact.
