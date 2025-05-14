@@ -1,7 +1,7 @@
 <h1 align="center"> 🚦Forecasting Traffic Volume🚦 </h1>
 
 <p align="center"> <img width="450" alt="image" src="https://github.com/user-attachments/assets/ad5e26c8-4b72-4c8e-a0c1-bf695d634fdb" /> </p>
-
+> Source: iStock
 This project forecasts daily traffic volumes for New South Head Road in Sydney, using historical traffic data from January 2012 to January 2025. The goal is to model and predict traffic flow using machine learning while accounting for holidays, weather, and irregular events like road closures or festivals.
 
 ## Project Motivation
