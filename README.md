@@ -90,8 +90,14 @@ After evaluating 20 combinations, the best performing set of parameters was used
 
 **LightGBM** is another gradient boosting framework developed by Microsoft known for its efficiency especially for large datasets. It uses leaf-wise tree growth which leads to faster training speed compared to XGBoost. Unlike XGBoost, LightGBM was not tuned and was trained with fixed parameters: n_estimators: 300, learning_rate: 0.05 and max_depth: 6. 
 
+## Model Comparison 
 
 
+| Model              | MAE       | RMSE      | Relative MAE (%)|
+|-------------------|-----------|-----------|-----------------|
+| Random Forest      | 1945.854  | 3926.882  |  5.787  |
+| XGBoost (Tuned)    | 1901.334  | 3813.914  |  5.655  |
+| LightGBM           | 1960.274  | 3978.401  |  5.787  |
 
 
 
