@@ -110,9 +110,9 @@ The **random forest regressor model** is a robust ensemble machine learning algo
 
 <p align="center">
   <img src="Plots/random_forest_prediction.png" width="900"/>
-</p>
+</p>   
 
-**Figure 7** shows the predicted vs. actual daily traffic volume using the Random Forest model. The model captures overall traffic patterns well, especially seasonal trends. However, it struggles to accurately predict sharp drops caused by missing data or irregular events like road closures or public disruptions. Despite these challenges, the model performs reasonably well in tracking general traffic flow.
+**Figure 7** Predicted vs. actual daily traffic volume using the Random Forest model. The model captures overall traffic patterns well, especially seasonal trends. However, it struggles to accurately predict sharp drops caused by missing data or irregular events like road closures or public disruptions. Despite these challenges, the model performs reasonably well in tracking general traffic flow.
 
 <p align="center">
   <img src="Plots/rf_feature_important.png" width="600"/>
